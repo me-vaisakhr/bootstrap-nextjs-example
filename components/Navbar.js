@@ -16,7 +16,9 @@ function TopNav() {
         </Link>
 
         <Link href="/restaurants" passHref>
-          <Nav.Link active={pathname === "/restaurants"}>Restaurants</Nav.Link>
+          <Nav.Link active={pathname.includes("/restaurants")}>
+            Restaurants
+          </Nav.Link>
         </Link>
 
         <Link href="/blog" passHref>
