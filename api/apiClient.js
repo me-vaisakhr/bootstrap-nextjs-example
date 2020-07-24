@@ -1,16 +1,8 @@
 import axios from 'axios';
-import cookie from 'js-cookie';
-import { push } from 'connected-react-router';
-import {store} from '../index.js';
-import {history} from '../redux/configureStore';
-import Utils from '../helpers/utils';
-import { STORAGE_KEYS } from "../constants";
 
 const getClient = url => {
   const options = {
-    baseURL:
-      url ||
-      process.env.API_KEY,
+    baseURL: url 
   };
 
   const client = axios.create(options);
@@ -18,15 +10,6 @@ const getClient = url => {
     // Add a request interceptor
     client.interceptors.request.use(
       requestConfig => {
-        if (Utils.getFromLocalStorage(STORAGE_KEYS.USER)) {
-          requestConfig.headers.USERID= JSON.parse(Utils.getFromLocalStorage(STORAGE_KEYS.USER)).userId;
-        }
-        const token = Utils.getFromLocalStorage(STORAGE_KEYS.TOKEN)||'';
-        if(token)
-        {
-          requestConfig.headers.Authorization= `Bearer ${token}`;
-        }
-        
         return requestConfig;
       },
       requestError => {
@@ -34,24 +17,14 @@ const getClient = url => {
       }
     );
 
-    // Add a response interceptor
     client.interceptors.response.use(
       response => {
-        if (response.data.status === 401) {
-          //if 401 - unauthorised comes redirect to login page.
-          if(history.location.pathname !== '/login'){
-            Utils.removeFromLocalStorage(STORAGE_KEYS.USER);
-            Utils.removeFromLocalStorage(STORAGE_KEYS.TOKEN);
-            store.dispatch(push('/login',{state:history.location.pathname}));
-          }
-        }
         return Promise.resolve(response);
       },
       error => {
         return Promise.reject(error);
       }
     );
-
   return client;
 };
 
