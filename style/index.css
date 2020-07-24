@@ -2,7 +2,7 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
 .md-container {
-  max-width: 800px;
+  /* max-width: 800px; */
   padding-top: 96px;
 }
 

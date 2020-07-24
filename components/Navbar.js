@@ -26,7 +26,7 @@ function TopNav() {
         </Link>
 
         <Link href="/contact" passHref>
-          <Nav.Link active={pathname === "/blog"}>Contact</Nav.Link>
+          <Nav.Link active={pathname === "/contact"}>Contact</Nav.Link>
         </Link>
       </Nav>
       <Form inline>

@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Container className="md-container">
+      <Container fluid className="md-container">
         <Head>
           <title>ReactJS with react-bootstrap</title>
           <link rel="icon" href="/favicon-32x32.png" />
