@@ -28,16 +28,13 @@ export default function Home() {
                     style={{ marginBottom: "32px" }}
                   >
                     <Card style={{ width: "18rem" }}>
-                      <Card.Img
-                        variant="top"
-                        src={`${restaurant.image}/${restaurant.id}`}
-                      />
+                      <Card.Img variant="top" src={`${restaurant.image}`} />
                       <Card.Body>
                         <Card.Title>{restaurant.name}</Card.Title>
                         <Card.Text>{restaurant.description}</Card.Text>
                         <Link
                           href={`restaurants/${restaurant.id}`}
-                          as={`restaurants/${restaurant.slug}`}
+                          as={`restaurants/${restaurant.slug}/${restaurant.id}`}
                         >
                           <Button variant="primary">Show Restaurant</Button>
                         </Link>
